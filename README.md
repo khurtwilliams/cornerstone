@@ -1,4 +1,4 @@
-# IndieWeb Minimalist WordPress Theme
+# Cornerstone WordPress Theme
 
 A minimalist WordPress theme with full IndieWeb support, microformats2 markup, ActivityPub compatibility, and Webmentions integration.
  
@@ -133,7 +133,7 @@ For customisations, create a child theme:
 ```php
 /* Child Theme style.css */
 /*
-Theme Name: IndieWeb Minimalist Child
+Theme Name: Cornerstone Child
 Template: indieweb-minimalist
 */
 
