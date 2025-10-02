@@ -1,11 +1,11 @@
 /*
-Theme Name: IndieWeb Minimalist
-Description: A minimalist WordPress theme with full IndieWeb support, microformats2, ActivityPub compatibility, and modern responsive design.
-Version: 1.0
+Theme Name: Cornerstone
+Description: A WordPress theme for the IndieWeb with microformats2, ActivityPub, and Webmentions support. Built on the principle that you own your digital home.
+Version: 1.0.0
 Author: Khürt Williams
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: indieweb-minimalist
+Text Domain: cornerstone
 Domain Path: /languages
 Tags: indieweb, microformats, activitypub, webmentions, responsive, minimalist, one-column, custom-header, custom-background, custom-colors, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, sticky-post, footer-widgets
 
@@ -17,6 +17,8 @@ This theme supports the IndieWeb building blocks and passes IndieWebify.me valid
 */
 
 /* Reset and Base Styles */
+
+
 * {
     box-sizing: border-box;
 }
