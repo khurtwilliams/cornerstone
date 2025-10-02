@@ -14,7 +14,7 @@
                     <article id="post-<?php the_ID(); ?>" <?php post_class('h-entry'); ?>>
                         <?php if (is_sticky()) : ?>
                             <div class="sticky-post-label">
-                                <?php _e('Featured Post', 'indieweb-minimalist'); ?>
+                                <?php _e('Featured Post', 'cornerstone'); ?>
                             </div>
                         <?php endif; ?>
 
@@ -35,11 +35,11 @@
 
                             <div class="entry-meta">
                                 <span class="posted-on">
-                                    <?php _e('Posted on', 'indieweb-minimalist'); ?>
+                                    <?php _e('Posted on', 'cornerstone'); ?>
                                     <time class="dt-published" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
                                         <?php echo get_the_date('l jS F Y'); ?>
                                     </time>
-                                    <?php _e('By', 'indieweb-minimalist'); ?>
+                                    <?php _e('By', 'cornerstone'); ?>
                                     <span class="p-author h-card">
                                         <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" class="u-url p-name">
                                             <?php the_author(); ?>
@@ -62,7 +62,7 @@
                         <?php if (!is_single()) : ?>
                             <footer class="entry-footer">
                                 <a href="<?php the_permalink(); ?>" class="read-more">
-                                    <?php _e('Read More', 'indieweb-minimalist'); ?>
+                                    <?php _e('Read More', 'cornerstone'); ?>
                                 </a>
                             </footer>
                         <?php endif; ?>
@@ -71,14 +71,14 @@
             </div>
 
             <?php the_posts_pagination(array(
-                'prev_text' => __('Previous', 'indieweb-minimalist'),
-                'next_text' => __('Next', 'indieweb-minimalist'),
+                'prev_text' => __('Previous', 'cornerstone'),
+                'next_text' => __('Next', 'cornerstone'),
             )); ?>
 
         <?php else : ?>
             <div class="no-posts">
-                <h1><?php _e('Nothing Found', 'indieweb-minimalist'); ?></h1>
-                <p><?php _e('It looks like nothing was found at this location.', 'indieweb-minimalist'); ?></p>
+                <h1><?php _e('Nothing Found', 'cornerstone'); ?></h1>
+                <p><?php _e('It looks like nothing was found at this location.', 'cornerstone'); ?></p>
             </div>
         <?php endif; ?>
     </div>
