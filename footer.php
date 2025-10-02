@@ -37,8 +37,8 @@
                     <p class="copyright">&copy; <?php echo date('Y'); ?> <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a></p>
 
                     <div class="rss-link">
-                        <a href="<?php bloginfo('rss2_url'); ?>" title="<?php _e('RSS Feed', 'indieweb-minimalist'); ?>">
-                            <?php _e('RSS', 'indieweb-minimalist'); ?>
+                        <a href="<?php bloginfo('rss2_url'); ?>" title="<?php _e('RSS Feed', 'cornerstone'); ?>">
+                            <?php _e('RSS', 'cornerstone'); ?>
                         </a>
                     </div>
                 </div>
