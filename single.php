@@ -73,11 +73,6 @@
                 </footer>
 	    </article>
 
-
-
-
-</article>
-
             <?php
             // Display ActivityPub Interactions - after post content, before comments
             global $wpdb;
