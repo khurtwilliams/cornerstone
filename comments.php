@@ -17,36 +17,36 @@ if (post_password_required()) {
                 <?php
                 $comment_count = get_comments_number();
                 if ($comment_count == 0) {
-                    _e('Leave a Comment', 'indieweb-minimalist');
+                    _e('Leave a Comment', 'cornerstone');
                 } else {
-                    printf(_n('One comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', $comment_count, 'indieweb-minimalist'), number_format_i18n($comment_count), get_the_title());
+                    printf(_n('One comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', $comment_count, 'cornerstone'), number_format_i18n($comment_count), get_the_title());
                 }
                 ?>
             </h3>
 
             <form action="<?php echo site_url('/wp-comments-post.php'); ?>" method="post" id="commentform" class="comment-form h-entry">
                 <div class="comment-form-author">
-                    <label for="author"><?php _e('Name', 'indieweb-minimalist'); ?> <?php if ($req) echo '*'; ?></label>
+                    <label for="author"><?php _e('Name', 'cornerstone'); ?> <?php if ($req) echo '*'; ?></label>
                     <input id="author" name="author" type="text" class="p-author h-card" value="<?php echo esc_attr($comment_author); ?>" size="30" <?php if ($req) echo 'required'; ?> />
                 </div>
 
                 <div class="comment-form-email">
-                    <label for="email"><?php _e('Email', 'indieweb-minimalist'); ?> <?php if ($req) echo '*'; ?></label>
+                    <label for="email"><?php _e('Email', 'cornerstone'); ?> <?php if ($req) echo '*'; ?></label>
                     <input id="email" name="email" type="email" class="u-email" value="<?php echo esc_attr($comment_author_email); ?>" size="30" <?php if ($req) echo 'required'; ?> />
                 </div>
 
                 <div class="comment-form-url">
-                    <label for="url"><?php _e('Website', 'indieweb-minimalist'); ?></label>
+                    <label for="url"><?php _e('Website', 'cornerstone'); ?></label>
                     <input id="url" name="url" type="url" class="u-url" value="<?php echo esc_attr($comment_author_url); ?>" size="30" />
                 </div>
 
                 <div class="comment-form-comment">
-                    <label for="comment"><?php _e('Comment', 'indieweb-minimalist'); ?> *</label>
+                    <label for="comment"><?php _e('Comment', 'cornerstone'); ?> *</label>
                     <textarea id="comment" name="comment" class="e-content p-summary" cols="45" rows="8" required></textarea>
                 </div>
 
                 <div class="form-submit">
-                    <input name="submit" type="submit" id="submit" class="submit" value="<?php _e('Post Comment', 'indieweb-minimalist'); ?>" />
+                    <input name="submit" type="submit" id="submit" class="submit" value="<?php _e('Post Comment', 'cornerstone'); ?>" />
                     <input type="hidden" name="comment_post_ID" value="<?php echo get_the_ID(); ?>" id="comment_post_ID" />
                     <input type="hidden" name="comment_parent" id="comment_parent" value="0" />
                 </div>
@@ -59,7 +59,7 @@ if (post_password_required()) {
             <h3 class="comments-title">
                 <?php
                 $comment_count = get_comments_number();
-                printf(_n('One comment', '%1$s comments', $comment_count, 'indieweb-minimalist'), number_format_i18n($comment_count));
+                printf(_n('One comment', '%1$s comments', $comment_count, 'cornerstone'), number_format_i18n($comment_count));
                 ?>
             </h3>
 
@@ -69,14 +69,14 @@ if (post_password_required()) {
                     'style'       => 'ol',
                     'short_ping'  => true,
                     'avatar_size' => 50,
-                    'callback'    => 'indieweb_minimalist_comment',
+                    'callback'    => 'cornerstone_comment',
                 ));
                 ?>
             </ol>
 
             <?php the_comments_pagination(array(
-                'prev_text' => __('Previous Comments', 'indieweb-minimalist'),
-                'next_text' => __('Next Comments', 'indieweb-minimalist'),
+                'prev_text' => __('Previous Comments', 'cornerstone'),
+                'next_text' => __('Next Comments', 'cornerstone'),
             )); ?>
         </div>
     <?php endif; ?>
@@ -84,7 +84,7 @@ if (post_password_required()) {
 
 <?php
 // Custom comment callback function
-function indieweb_minimalist_comment($comment, $args, $depth) {
+function cornerstone_comment($comment, $args, $depth) {
     ?>
     <li <?php comment_class('h-entry'); ?> id="comment-<?php comment_ID(); ?>">
         <article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
@@ -94,7 +94,7 @@ function indieweb_minimalist_comment($comment, $args, $depth) {
                     <span class="fn p-name"><?php echo get_comment_author_link(); ?></span>
                     <a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>" class="u-url">
                         <time class="dt-published" datetime="<?php echo get_comment_date('c'); ?>">
-                            <?php printf(__('%1$s at %2$s', 'indieweb-minimalist'), get_comment_date(), get_comment_time()); ?>
+                            <?php printf(__('%1$s at %2$s', 'cornerstone'), get_comment_date(), get_comment_time()); ?>
                         </time>
                     </a>
                 </div>
