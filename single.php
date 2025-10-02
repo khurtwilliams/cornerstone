@@ -179,7 +179,7 @@
 
             <?php
             // Related Posts
-            $related_posts = indieweb_minimalist_get_related_posts(get_the_ID());
+            $related_posts = cornerstone_get_related_posts(get_the_ID());
             if (!empty($related_posts)) : ?>
                 <div class="related-posts">
                     <h3><?php _e('Related Posts', 'cornerstone'); ?></h3>
