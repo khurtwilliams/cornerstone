@@ -12,7 +12,7 @@
             <article id="post-<?php the_ID(); ?>" <?php post_class('h-entry'); ?>>
                 <?php if (is_sticky()) : ?>
                     <div class="sticky-post-label">
-                        <?php _e('Featured Post', 'indieweb-minimalist'); ?>
+                        <?php _e('Featured Post', 'cornerstone'); ?>
                     </div>
                 <?php endif; ?>
 
@@ -29,11 +29,11 @@
                     
 <div class="entry-meta">
     <span class="posted-on">
-        <?php _e('Posted on', 'indieweb-minimalist'); ?>
+        <?php _e('Posted on', 'cornerstone'); ?>
         <time class="dt-published" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
             <?php echo get_the_date('l jS F Y'); ?>
         </time>
-        <?php _e('By', 'indieweb-minimalist'); ?>
+        <?php _e('By', 'cornerstone'); ?>
         <span class="p-author h-card">
             <?php echo get_avatar(get_the_author_meta('ID'), 32, '', '', array('class' => 'u-photo')); ?>
             <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" class="u-url p-name">
@@ -53,7 +53,7 @@
                     $categories = get_the_category();
                     if (!empty($categories)) {
                         echo '<div class="post-categories">';
-                        echo '<span>' . __('Categories:', 'indieweb-minimalist') . ' </span>';
+                        echo '<span>' . __('Categories:', 'cornerstone') . ' </span>';
                         foreach ($categories as $category) {
                             echo '<a href="' . get_category_link($category->term_id) . '" class="p-category" rel="category tag">' . $category->name . '</a> ';
                         }
@@ -63,7 +63,7 @@
                     $tags = get_the_tags();
                     if (!empty($tags)) {
                         echo '<div class="post-tags">';
-                        echo '<span>' . __('Tags:', 'indieweb-minimalist') . ' </span>';
+                        echo '<span>' . __('Tags:', 'cornerstone') . ' </span>';
                         foreach ($tags as $tag) {
                             echo '<a href="' . get_tag_link($tag->term_id) . '" class="p-category" rel="tag">' . $tag->name . '</a> ';
                         }
@@ -102,11 +102,11 @@
             
             if (!empty($reposts) || !empty($likes)) : ?>
                 <div class="activitypub-reactions">
-                    <h3><?php _e('Fediverse Interactions', 'indieweb-minimalist'); ?></h3>
+                    <h3><?php _e('Fediverse Interactions', 'cornerstone'); ?></h3>
                     
                     <?php if (!empty($likes)) : ?>
                         <div class="ap-likes">
-                            <strong><?php printf(_n('%d Like', '%d Likes', count($likes), 'indieweb-minimalist'), count($likes)); ?></strong>
+                            <strong><?php printf(_n('%d Like', '%d Likes', count($likes), 'cornerstone'), count($likes)); ?></strong>
                             <div class="reaction-avatars">
                                 <?php foreach ($likes as $like) : ?>
                                     <?php if (!empty($like->comment_author_url)) : ?>
@@ -123,7 +123,7 @@
                     
                     <?php if (!empty($reposts)) : ?>
                         <div class="ap-boosts">
-                            <strong><?php printf(_n('%d Boost', '%d Boosts', count($reposts), 'indieweb-minimalist'), count($reposts)); ?></strong>
+                            <strong><?php printf(_n('%d Boost', '%d Boosts', count($reposts), 'cornerstone'), count($reposts)); ?></strong>
                             <div class="reaction-avatars">
                                 <?php foreach ($reposts as $repost) : ?>
                                     <?php if (!empty($repost->comment_author_url)) : ?>
@@ -182,7 +182,7 @@
             $related_posts = indieweb_minimalist_get_related_posts(get_the_ID());
             if (!empty($related_posts)) : ?>
                 <div class="related-posts">
-                    <h3><?php _e('Related Posts', 'indieweb-minimalist'); ?></h3>
+                    <h3><?php _e('Related Posts', 'cornerstone'); ?></h3>
                     <div class="related-posts-grid">
                         <?php foreach ($related_posts as $related) : ?>
                             <article class="related-post h-entry">
@@ -227,7 +227,7 @@
                         <?php if ($prev_post) : ?>
                             <div class="nav-previous">
                                 <a href="<?php echo get_permalink($prev_post->ID); ?>" rel="prev">
-                                    <span class="nav-subtitle"><?php _e('Previous Post', 'indieweb-minimalist'); ?></span>
+                                    <span class="nav-subtitle"><?php _e('Previous Post', 'cornerstone'); ?></span>
                                     <span class="nav-title"><?php echo get_the_title($prev_post->ID); ?></span>
                                 </a>
                             </div>
@@ -236,7 +236,7 @@
                         <?php if ($next_post) : ?>
                             <div class="nav-next">
                                 <a href="<?php echo get_permalink($next_post->ID); ?>" rel="next">
-                                    <span class="nav-subtitle"><?php _e('Next Post', 'indieweb-minimalist'); ?></span>
+                                    <span class="nav-subtitle"><?php _e('Next Post', 'cornerstone'); ?></span>
                                     <span class="nav-title"><?php echo get_the_title($next_post->ID); ?></span>
                                 </a>
                             </div>
