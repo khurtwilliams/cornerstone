@@ -2,8 +2,6 @@
 
 A minimalist WordPress theme with full IndieWeb support, microformats2 markup, ActivityPub compatibility, and Webmentions integration.
  
-IndieWeb Minimalist v1.0.0
-
 ![Screenshot](screenshot.png)
 
 ## Features
