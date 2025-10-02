@@ -6,7 +6,7 @@
 
 <?php
 /**
- * IndieWeb Minimalist Theme Functions
+ * Cornerstone Theme Functions
  */
 
 if (!defined('ABSPATH')) {
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Theme setup
-function indieweb_minimalist_setup() {
+function cornerstone_setup() {
     // Add theme support for various features
     add_theme_support('automatic-feed-links');
     add_theme_support('title-tag');
@@ -53,32 +53,32 @@ function indieweb_minimalist_setup() {
 
     // Register navigation menus
     register_nav_menus(array(
-        'primary' => __('Primary Menu', 'indieweb-minimalist'),
-        'footer' => __('Footer Menu', 'indieweb-minimalist'),
+        'primary' => __('Primary Menu', 'cornerstone'),
+        'footer' => __('Footer Menu', 'cornerstone'),
     ));
 
     // Load text domain for translations
-    load_theme_textdomain('indieweb-minimalist', get_template_directory() . '/languages');
+    load_theme_textdomain('cornerstone', get_template_directory() . '/languages');
 }
-add_action('after_setup_theme', 'indieweb_minimalist_setup');
+add_action('after_setup_theme', 'cornerstone_setup');
 
 // Enqueue styles and scripts
-function indieweb_minimalist_scripts() {
-    wp_enqueue_style('indieweb-minimalist-style', get_stylesheet_uri(), array(), '1.0');
-    wp_enqueue_script('indieweb-minimalist-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true);
+function cornerstone_scripts() {
+    wp_enqueue_style('cornerstone-style', get_stylesheet_uri(), array(), '1.0');
+    wp_enqueue_script('cornerstone-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true);
     
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
 }
-add_action('wp_enqueue_scripts', 'indieweb_minimalist_scripts');
+add_action('wp_enqueue_scripts', 'cornerstone_scripts');
 
 // Widget areas
-function indieweb_minimalist_widgets_init() {
+function cornerstone_widgets_init() {
     register_sidebar(array(
-        'name'          => __('Footer Widget Area 1', 'indieweb-minimalist'),
+        'name'          => __('Footer Widget Area 1', 'cornerstone'),
         'id'            => 'footer-1',
-        'description'   => __('Add widgets here to appear in the footer.', 'indieweb-minimalist'),
+        'description'   => __('Add widgets here to appear in the footer.', 'cornerstone'),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h3 class="widget-title">',
@@ -86,9 +86,9 @@ function indieweb_minimalist_widgets_init() {
     ));
     
     register_sidebar(array(
-        'name'          => __('Footer Widget Area 2', 'indieweb-minimalist'),
+        'name'          => __('Footer Widget Area 2', 'cornerstone'),
         'id'            => 'footer-2',
-        'description'   => __('Add widgets here to appear in the footer.', 'indieweb-minimalist'),
+        'description'   => __('Add widgets here to appear in the footer.', 'cornerstone'),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h3 class="widget-title">',
@@ -96,19 +96,19 @@ function indieweb_minimalist_widgets_init() {
     ));
     
     register_sidebar(array(
-        'name'          => __('Footer Widget Area 3', 'indieweb-minimalist'),
+        'name'          => __('Footer Widget Area 3', 'cornerstone'),
         'id'            => 'footer-3',
-        'description'   => __('Add widgets here to appear in the footer.', 'indieweb-minimalist'),
+        'description'   => __('Add widgets here to appear in the footer.', 'cornerstone'),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h3 class="widget-title">',
         'after_title'   => '</h3>',
     ));
 }
-add_action('widgets_init', 'indieweb_minimalist_widgets_init');
+add_action('widgets_init', 'cornerstone_widgets_init');
 
 // Add IndieWeb rel=me links
-function indieweb_minimalist_add_rel_me() {
+function cornerstone_add_rel_me() {
     $social_links = get_theme_mod('social_links', array());
     foreach ($social_links as $link) {
         if (!empty($link)) {
@@ -116,30 +116,30 @@ function indieweb_minimalist_add_rel_me() {
         }
     }
 }
-add_action('wp_head', 'indieweb_minimalist_add_rel_me');
+add_action('wp_head', 'cornerstone_add_rel_me');
 
 // Add webmention endpoint discovery
-function indieweb_minimalist_webmention_discovery() {
+function cornerstone_webmention_discovery() {
     if (function_exists('webmention_discovery')) {
         webmention_discovery();
     }
 }
-add_action('wp_head', 'indieweb_minimalist_webmention_discovery');
+add_action('wp_head', 'cornerstone_webmention_discovery');
 
 // Customize excerpt length
-function indieweb_minimalist_excerpt_length($length) {
+function cornerstone_excerpt_length($length) {
     return 30;
 }
-add_filter('excerpt_length', 'indieweb_minimalist_excerpt_length');
+add_filter('excerpt_length', 'cornerstone_excerpt_length');
 
 // Custom excerpt more
-function indieweb_minimalist_excerpt_more($more) {
+function cornerstone_excerpt_more($more) {
     return '&hellip;';
 }
-add_filter('excerpt_more', 'indieweb_minimalist_excerpt_more');
+add_filter('excerpt_more', 'cornerstone_excerpt_more');
 
 // Get related posts
-function indieweb_minimalist_get_related_posts($post_id, $number = 3) {
+function cornerstone_get_related_posts($post_id, $number = 3) {
     $related = get_posts(array(
         'category__in' => wp_get_post_categories($post_id),
         'numberposts'  => $number,
@@ -158,10 +158,10 @@ function indieweb_minimalist_get_related_posts($post_id, $number = 3) {
 }
 
 // Theme Customizer
-function indieweb_minimalist_customize_register($wp_customize) {
+function cornerstone_customize_register($wp_customize) {
     // Social Links Section
     $wp_customize->add_section('social_links', array(
-        'title'    => __('Social Links', 'indieweb-minimalist'),
+        'title'    => __('Social Links', 'cornerstone'),
         'priority' => 130,
     ));
     
@@ -173,7 +173,7 @@ function indieweb_minimalist_customize_register($wp_customize) {
         ));
         
         $wp_customize->add_control("social_link_$i", array(
-            'label'   => sprintf(__('Social Link %d', 'indieweb-minimalist'), $i),
+            'label'   => sprintf(__('Social Link %d', 'cornerstone'), $i),
             'section' => 'social_links',
             'type'    => 'url',
         ));
@@ -181,7 +181,7 @@ function indieweb_minimalist_customize_register($wp_customize) {
     
     // Author Bio Section
     $wp_customize->add_section('author_bio', array(
-        'title'    => __('Author Bio', 'indieweb-minimalist'),
+        'title'    => __('Author Bio', 'cornerstone'),
         'priority' => 140,
     ));
     
@@ -191,10 +191,10 @@ function indieweb_minimalist_customize_register($wp_customize) {
     ));
     
     $wp_customize->add_control('show_author_bio', array(
-        'label'   => __('Show Author Bio', 'indieweb-minimalist'),
+        'label'   => __('Show Author Bio', 'cornerstone'),
         'section' => 'author_bio',
         'type'    => 'checkbox',
     ));
 }
-add_action('customize_register', 'indieweb_minimalist_customize_register');
+add_action('customize_register', 'cornerstone_customize_register');
 ?>
