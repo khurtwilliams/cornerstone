@@ -89,7 +89,7 @@
             <nav id="site-navigation" class="main-navigation" role="navigation">
                 <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
                     <span class="menu-icon"></span>
-                    <span class="menu-text"><?php _e('Menu', 'indieweb-minimalist'); ?></span>
+                    <span class="menu-text"><?php _e('Menu', 'cornerstone'); ?></span>
                 </button>
                 
                 <?php
