@@ -1,4 +1,3 @@
-<script>
 /**
  * Mobile Navigation Toggle
  */
@@ -55,4 +54,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
