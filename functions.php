@@ -48,7 +48,7 @@ function cornerstone_setup() {
     ));
 
     // Add custom image sizes
-    add_image_size('featured-image', 1200, 600, true);
+    add_image_size('featured-image', 1200, 999, true);
     add_image_size('related-post-thumb', 300, 200, true);
 
     // Register navigation menus
