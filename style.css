@@ -904,6 +904,10 @@ article:last-child {
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
+    .primary-menu {
+        background: #2a2a2a;
+    }
+    
     .activitypub-reactions {
         background: #2a2a2a;
         border-top-color: #333;
