@@ -1,10 +1,10 @@
 /*
 Theme Name: Cornerstone
 Description: A WordPress theme for the IndieWeb with microformats2, ActivityPub, and Webmentions support. Built on the principle that you own your digital home.
-Version: 1.0.0
+Version: 1.0.2
 Author: Khürt Williams
 License: GPL v2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
 Text Domain: cornerstone
 Domain Path: /languages
 Tags: indieweb, microformats, activitypub, webmentions, responsive, minimalist, one-column, custom-header, custom-background, custom-colors, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, sticky-post, footer-widgets
@@ -24,7 +24,7 @@ This theme supports the IndieWeb building blocks and passes IndieWebify.me valid
 }
 
 html {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -902,31 +902,6 @@ article:last-child {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .primary-menu {
-        background: #2a2a2a;
-    }
-    
-    .activitypub-reactions {
-        background: #2a2a2a;
-        border-top-color: #333;
-    }
-
-    .activitypub-reactions h3 {
-        color: #e1e1e1;
-    }
-
-    .ap-likes strong,
-    .ap-boosts strong {
-        color: #aaa;
-    }
-
-    .reaction-avatar {
-        border-color: #2a2a2a;
-    }
-}
-
 /* High Contrast Mode Support */
 @media (prefers-contrast: high) {
     body {
@@ -969,33 +944,91 @@ article:last-child {
         background: #1a1a1a;
         color: #e1e1e1;
     }
-    
+
     .site-header {
         background: #1a1a1a;
         border-bottom-color: #333;
     }
-    
+
     .site-title a,
     .entry-title a,
     .primary-menu a {
         color: #e1e1e1;
     }
-    
+
+    /* Mobile menu dark mode fix */
+    .primary-menu {
+        background: #2a2a2a;
+    }
+
+    /* Desktop dropdown sub-menu dark mode fix */
+    .primary-menu .sub-menu {
+        background: #2a2a2a;
+        border-color: #333;
+    }
+
+    .primary-menu .sub-menu a {
+        border-bottom-color: #333;
+    }
+
     .author-bio,
     .related-posts,
     .comment-list .comment {
         background: #2a2a2a;
     }
-    
+
     .site-footer {
         background: #2a2a2a;
         border-top-color: #333;
     }
-    
+
     .comment-form input,
     .comment-form textarea {
         background: #2a2a2a;
         border-color: #444;
+        color: #e1e1e1;
+    }
+
+    /* ActivityPub reactions dark mode */
+    .activitypub-reactions {
+        background: #2a2a2a;
+        border-top-color: #333;
+    }
+
+    .activitypub-reactions h3 {
+        color: #e1e1e1;
+    }
+
+    .ap-likes strong,
+    .ap-boosts strong {
+        color: #aaa;
+    }
+
+    .reaction-avatar {
+        border-color: #2a2a2a;
+    }
+
+    .author-description {
+        color: #d1d1d1;
+    }
+
+    .site-description {
+        color: #aaa;
+    }
+
+    .author-name a {
+        color: #e1e1e1;
+    }
+    
+    .author-description {
+        color: #d1d1d1;
+    }
+    
+    .site-description {
+        color: #aaa;
+    }
+
+    .related-posts h3 {
         color: #e1e1e1;
     }
 }
