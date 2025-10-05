@@ -74,66 +74,68 @@
 	    </article>
 
             <?php
-            // Display ActivityPub Interactions - after post content, before comments
-            global $wpdb;
-            
-            $reposts = $wpdb->get_results($wpdb->prepare(
-                "SELECT comment_ID, comment_author, comment_author_url, comment_author_email 
-                 FROM {$wpdb->comments} 
-                 WHERE comment_post_ID = %d 
-                 AND comment_type = 'repost' 
-                 AND comment_approved = '1'",
-                get_the_ID()
-            ));
-            
-            $likes = $wpdb->get_results($wpdb->prepare(
-                "SELECT comment_ID, comment_author, comment_author_url, comment_author_email 
-                 FROM {$wpdb->comments} 
-                 WHERE comment_post_ID = %d 
-                 AND comment_type = 'like' 
-                 AND comment_approved = '1'",
-                get_the_ID()
-            ));
-            
-            if (!empty($reposts) || !empty($likes)) : ?>
-                <div class="activitypub-reactions">
-                    <h3><?php _e('Fediverse Interactions', 'cornerstone'); ?></h3>
-                    
-                    <?php if (!empty($likes)) : ?>
-                        <div class="ap-likes">
-                            <strong><?php printf(_n('%d Like', '%d Likes', count($likes), 'cornerstone'), count($likes)); ?></strong>
-                            <div class="reaction-avatars">
-                                <?php foreach ($likes as $like) : ?>
-                                    <?php if (!empty($like->comment_author_url)) : ?>
-                                        <a href="<?php echo esc_url($like->comment_author_url); ?>" title="<?php echo esc_attr($like->comment_author); ?>" target="_blank" rel="noopener">
+            // Display ActivityPub Interactions - only on single post pages
+            if (is_single()) {
+                global $wpdb;
+                
+                $reposts = $wpdb->get_results($wpdb->prepare(
+                    "SELECT comment_ID, comment_author, comment_author_url, comment_author_email 
+                     FROM {$wpdb->comments} 
+                     WHERE comment_post_ID = %d 
+                     AND comment_type = 'repost' 
+                     AND comment_approved = '1'",
+                    get_the_ID()
+                ));
+                
+                $likes = $wpdb->get_results($wpdb->prepare(
+                    "SELECT comment_ID, comment_author, comment_author_url, comment_author_email 
+                     FROM {$wpdb->comments} 
+                     WHERE comment_post_ID = %d 
+                     AND comment_type = 'like' 
+                     AND comment_approved = '1'",
+                    get_the_ID()
+                ));
+                
+                if (!empty($reposts) || !empty($likes)) : ?>
+                    <div class="activitypub-reactions">
+                        <h3><?php _e('Fediverse Interactions', 'cornerstone'); ?></h3>
+                        
+                        <?php if (!empty($likes)) : ?>
+                            <div class="ap-likes">
+                                <strong><?php printf(_n('%d Like', '%d Likes', count($likes), 'cornerstone'), count($likes)); ?></strong>
+                                <div class="reaction-avatars">
+                                    <?php foreach ($likes as $like) : ?>
+                                        <?php if (!empty($like->comment_author_url)) : ?>
+                                            <a href="<?php echo esc_url($like->comment_author_url); ?>" title="<?php echo esc_attr($like->comment_author); ?>" target="_blank" rel="noopener">
+                                                <?php echo get_avatar($like->comment_author_email, 32, '', esc_attr($like->comment_author), array('class' => 'reaction-avatar')); ?>
+                                            </a>
+                                        <?php else : ?>
                                             <?php echo get_avatar($like->comment_author_email, 32, '', esc_attr($like->comment_author), array('class' => 'reaction-avatar')); ?>
-                                        </a>
-                                    <?php else : ?>
-                                        <?php echo get_avatar($like->comment_author_email, 32, '', esc_attr($like->comment_author), array('class' => 'reaction-avatar')); ?>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if (!empty($reposts)) : ?>
-                        <div class="ap-boosts">
-                            <strong><?php printf(_n('%d Boost', '%d Boosts', count($reposts), 'cornerstone'), count($reposts)); ?></strong>
-                            <div class="reaction-avatars">
-                                <?php foreach ($reposts as $repost) : ?>
-                                    <?php if (!empty($repost->comment_author_url)) : ?>
-                                        <a href="<?php echo esc_url($repost->comment_author_url); ?>" title="<?php echo esc_attr($repost->comment_author); ?>" target="_blank" rel="noopener">
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($reposts)) : ?>
+                            <div class="ap-boosts">
+                                <strong><?php printf(_n('%d Boost', '%d Boosts', count($reposts), 'cornerstone'), count($reposts)); ?></strong>
+                                <div class="reaction-avatars">
+                                    <?php foreach ($reposts as $repost) : ?>
+                                        <?php if (!empty($repost->comment_author_url)) : ?>
+                                            <a href="<?php echo esc_url($repost->comment_author_url); ?>" title="<?php echo esc_attr($repost->comment_author); ?>" target="_blank" rel="noopener">
+                                                <?php echo get_avatar($repost->comment_author_email, 32, '', esc_attr($repost->comment_author), array('class' => 'reaction-avatar')); ?>
+                                            </a>
+                                        <?php else : ?>
                                             <?php echo get_avatar($repost->comment_author_email, 32, '', esc_attr($repost->comment_author), array('class' => 'reaction-avatar')); ?>
-                                        </a>
-                                    <?php else : ?>
-                                        <?php echo get_avatar($repost->comment_author_email, 32, '', esc_attr($repost->comment_author), array('class' => 'reaction-avatar')); ?>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            <?php } // end is_single() check ?>
 
             <?php 
             // Author Bio
