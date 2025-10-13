@@ -11,48 +11,15 @@ if (post_password_required()) {
 ?>
 
 <div id="comments" class="comments-area">
-    <?php if (comments_open()) : ?>
-        <div id="respond" class="comment-respond">
-            <h3 id="reply-title" class="comment-reply-title">
-                <?php
-                $comment_count = get_comments_number();
-                if ($comment_count == 0) {
-                    _e('Leave a Comment', 'cornerstone');
-                } else {
-                    printf(_n('One comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', $comment_count, 'cornerstone'), number_format_i18n($comment_count), get_the_title());
-                }
-                ?>
-            </h3>
-
-            <form action="<?php echo site_url('/wp-comments-post.php'); ?>" method="post" id="commentform" class="comment-form h-entry">
-                <div class="comment-form-author">
-                    <label for="author"><?php _e('Name', 'cornerstone'); ?> <?php if ($req) echo '*'; ?></label>
-                    <input id="author" name="author" type="text" class="p-author h-card" value="<?php echo esc_attr($comment_author); ?>" size="30" <?php if ($req) echo 'required'; ?> />
-                </div>
-
-                <div class="comment-form-email">
-                    <label for="email"><?php _e('Email', 'cornerstone'); ?> <?php if ($req) echo '*'; ?></label>
-                    <input id="email" name="email" type="email" class="u-email" value="<?php echo esc_attr($comment_author_email); ?>" size="30" <?php if ($req) echo 'required'; ?> />
-                </div>
-
-                <div class="comment-form-url">
-                    <label for="url"><?php _e('Website', 'cornerstone'); ?></label>
-                    <input id="url" name="url" type="url" class="u-url" value="<?php echo esc_attr($comment_author_url); ?>" size="30" />
-                </div>
-
-                <div class="comment-form-comment">
-                    <label for="comment"><?php _e('Comment', 'cornerstone'); ?> *</label>
-                    <textarea id="comment" name="comment" class="e-content p-summary" cols="45" rows="8" required></textarea>
-                </div>
-
-                <div class="form-submit">
-                    <input name="submit" type="submit" id="submit" class="submit" value="<?php _e('Post Comment', 'cornerstone'); ?>" />
-                    <input type="hidden" name="comment_post_ID" value="<?php echo get_the_ID(); ?>" id="comment_post_ID" />
-                    <input type="hidden" name="comment_parent" id="comment_parent" value="0" />
-                </div>
-            </form>
-        </div>
-    <?php endif; ?>
+<?php if (comments_open()) : ?>
+    <?php
+    comment_form(array(
+        'title_reply' => get_comments_number() == 0 ? __('Leave a Comment', 'cornerstone') : sprintf(_n('One comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', get_comments_number(), 'cornerstone'), number_format_i18n(get_comments_number()), get_the_title()),
+        'class_form' => 'comment-form h-entry',
+        'comment_field' => '<div class="comment-form-comment"><label for="comment">' . __('Comment', 'cornerstone') . ' *</label><textarea id="comment" name="comment" class="e-content p-summary" cols="45" rows="8" required></textarea></div>',
+    ));
+    ?>
+<?php endif; ?>
 
     <?php if (have_comments()) : ?>
         <div class="comment-list-wrapper">
