@@ -24,11 +24,7 @@ All notable changes to this project will be documented in this file.
 - Special thanks to Daniel Brinneman for reporting accessibility and display issues
 
 ## [1.0.5] - [previous date]
-...
-```
 
-**Then commit it:**
-```
 Update CHANGELOG for version 1.0.6
 
 ## [1.0.0] - 2025-10-02
