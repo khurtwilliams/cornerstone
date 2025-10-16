@@ -16,11 +16,18 @@
                     </div>
                 <?php endif; ?>
 
-                <?php if (has_post_thumbnail()) : ?>
-                    <div class="post-thumbnail">
-                        <?php the_post_thumbnail('featured-image', array('class' => 'u-photo')); ?>
-                    </div>
-                <?php endif; ?>
+<?php if (has_post_thumbnail()) : ?>
+    <div class="post-thumbnail wp-caption">
+        <?php the_post_thumbnail('featured-image', array('class' => 'u-photo')); ?>
+        <?php
+        $thumbnail_id = get_post_thumbnail_id();
+        $caption = wp_get_attachment_caption($thumbnail_id);
+
+        if ($caption) : ?>
+		<p class="wp-caption-text"><?php echo wp_kses_post($caption); ?></p> 
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
 
 		<header class="entry-header">
 		 <h1 class="entry-title p-name">

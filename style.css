@@ -219,6 +219,17 @@ article:last-child {
     margin-bottom: 1.5rem;
 }
 
+/* Featured image caption styling to match inline images */
+.post-thumbnail .wp-caption-text {
+    text-align: right;
+    font-style: italic;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 0.5rem;
+    padding-right: 0.5rem;
+}
+
 .post-thumbnail img {
     width: 100%;
     height: auto;
@@ -1030,5 +1041,9 @@ article:last-child {
 
     .related-posts h3 {
         color: #e1e1e1;
+    }
+
+    .post-thumbnail .wp-caption-text {
+        color: #aaa;
     }
 }
