@@ -11,7 +11,7 @@ We release patches for security vulnerabilities in the following versions:
 
 ## Reporting a Vulnerability
 
-The Cornerstone theme team takes security bugs seriously. We appreciate your efforts to responsibly disclose your findings.
+The Cornerstone theme team (that's one person, me) takes security bugs seriously. We appreciate your efforts to responsibly disclose your findings.
 
 ### How to Report
 
