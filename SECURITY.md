@@ -19,7 +19,7 @@ The Cornerstone theme team (that's one person, me) takes security bugs seriously
 
 Instead, please report security vulnerabilities by email to:
 
-**security@islandinthenet.com**
+**khurt@islandinthenet.com**
 
 You should receive a response within 48 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
 
