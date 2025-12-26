@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.9] - 2025-12-26
+
+### Added
+- Dark mode styles for post navigation
+- Dark mode styles for social icons
+- Dark mode styles for related post cards
+
+### Fixed
+- Removed duplicate CSS declarations in dark mode section
+- Fixed duplicate `rel` attribute on social icon links
+- Dynamic version string for stylesheet cache busting
+
+### Removed
+- Backup files (.bak, .old, .new) from theme directory
+
 ## [1.0.8] - 2025-12-26
 
 ### Added
