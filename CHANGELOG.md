@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.7] - 2025-11-21
+
+## Added
+- Social media icons in author bio section (displays as circular icon buttons instead of raw URLs)
+- Automatic platform detection for 23+ social platforms (Mastodon, Bluesky, Twitter/X, LinkedIn, Instagram, GitHub, YouTube, and more)
+- Support for Mastodon instances and fediverse platforms
+
+## Changed
+- Upgraded Font Awesome from 6.4.0 to 6.6.0 for Bluesky icon support
+- Author bio social links now render as styled icon buttons with hover effects
+- Added dark mode support for social icon styling
+
+## Technical
+- Added `cornerstone_get_social_platform()` function to detect social platforms from URLs
+- Added `cornerstone_get_social_icon()` function to return Font Awesome icon classes
+- Updated `single.php` to use helper functions for icon rendering
+- Enhanced CSS with `.social-icon` and `.author-social` styling
+
 ## [1.0.6] - 2025-10-16
 
 ### Added
