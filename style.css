@@ -2,7 +2,7 @@
 Theme Name: Cornerstone
 Description: A WordPress theme for the IndieWeb with microformats2, ActivityPub, and Webmentions support. Built on the principle that you own your digital home.
 Version: 1.0.8
-Author: Khürt Williams
+Author: KhÃ¼rt Williams
 License: GPL v2 or later
 
 Text Domain: cornerstone
@@ -274,6 +274,34 @@ article:last-child {
     line-height: 1.7;
 }
 
+.entry-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Image Captions */
+.wp-caption {
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.wp-caption img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.wp-caption-text {
+    text-align: right;
+    font-style: italic;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 0.5rem;
+    padding-right: 0.5rem;
+}
+
 /* Tables */
 .entry-content table {
     width: 100%;
@@ -302,32 +330,11 @@ article:last-child {
     background-color: #f5f5f5;
 }
 
-.entry-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-
-/* Image Captions */
-.wp-caption {
-    max-width: 100%;
-    margin-bottom: 1.5rem;
-}
-
-.wp-caption img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.wp-caption-text {
-    text-align: right;
-    font-style: italic;
-    font-size: 0.8125rem;
-    line-height: 1.5;
-    color: #666;
-    margin-top: 0.5rem;
-    padding-right: 0.5rem;
+/* Table wrapper for responsive scroll */
+@media screen and (max-width: 782px) {
+    .entry-content table {
+        box-shadow: 2px 0 5px rgba(0,0,0,0.05) inset, -2px 0 5px rgba(0,0,0,0.05) inset;
+    }
 }
 
 /* Author Bio */
@@ -366,41 +373,11 @@ article:last-child {
     margin-bottom: 1rem;
 }
 
-/* Social Icons */
-.author-social {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #f0f0f0;
+.author-social a {
+    display: inline-block;
+    margin-right: 1rem;
     color: #0073aa;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.social-icon:hover {
-    background: #0073aa;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 115, 170, 0.3);
-}
-
-.social-icon i {
-    font-size: 1.25rem;
-}
-
-.social-platform {
-    display: none;
+    font-size: 0.9rem;
 }
 
 /* Related Posts */
@@ -836,6 +813,13 @@ article:last-child {
     .footer-navigation ul {
         justify-content: center;
     }
+    
+    /* Tables - enable horizontal scroll on tablets */
+    .entry-content table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -858,6 +842,13 @@ article:last-child {
     .footer-navigation ul {
         flex-direction: column;
         gap: 0.5rem;
+    }
+    
+    /* Tables - reduce padding on small phones */
+    .entry-content table th,
+    .entry-content table td {
+        padding: 0.5rem;
+        font-size: 0.875rem;
     }
 }
 
@@ -1009,29 +1000,6 @@ article:last-child {
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-
-/* Tables dark mode */
-    .entry-content table {
-        border-color: #444;
-    }
-
-    .entry-content table th,
-    .entry-content table td {
-        border-color: #444;
-    }
-
-    .entry-content table th {
-        background-color: #2a2a2a;
-    }
-
-    .entry-content table tbody tr:nth-child(even) {
-        background-color: #222;
-    }
-
-    .entry-content table tbody tr:hover {
-        background-color: #333;
-    }
-
     body {
         background: #1a1a1a;
         color: #e1e1e1;
@@ -1112,14 +1080,6 @@ article:last-child {
         color: #e1e1e1;
     }
     
-    .author-description {
-        color: #d1d1d1;
-    }
-    
-    .site-description {
-        color: #aaa;
-    }
-
     .related-posts h3 {
         color: #e1e1e1;
     }
@@ -1127,7 +1087,44 @@ article:last-child {
     .post-thumbnail .wp-caption-text {
         color: #aaa;
     }
-    /* Social icons dark mode */
+
+    /* Tables dark mode */
+    .entry-content table {
+        border-color: #444;
+    }
+
+    .entry-content table th,
+    .entry-content table td {
+        border-color: #444;
+    }
+
+    .entry-content table th {
+        background-color: #2a2a2a;
+    }
+
+    .entry-content table tbody tr:nth-child(even) {
+        background-color: #222;
+    }
+
+    .entry-content table tbody tr:hover {
+        background-color: #333;
+    }
+
+    /* Post Navigation */
+    .post-navigation .nav-links a {
+        background: #2a2a2a;
+        color: #e1e1e1;
+    }
+
+    .post-navigation .nav-links a:hover {
+        background: #333;
+    }
+
+    .post-navigation .nav-subtitle {
+        color: #aaa;
+    }
+
+    /* Social Icons */
     .social-icon {
         background: #333;
         color: #0073aa;
@@ -1137,5 +1134,18 @@ article:last-child {
     .social-icon:hover {
         background: #0073aa;
         color: white;
+    }
+
+    /* Related Posts */
+    .related-post {
+        background: #333;
+    }
+
+    .related-post-title a {
+        color: #e1e1e1;
+    }
+
+    .related-post-date {
+        color: #aaa;
     }
 }
