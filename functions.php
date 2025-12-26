@@ -48,7 +48,8 @@ function cornerstone_setup() {
     ));
 
     // Add custom image sizes
-    add_image_size('featured-image', 1200, 999, true);
+    /// add_image_size('featured-image', 1200, 600, true);
+    add_image_size('featured-image', 1200, 9999, false);
     add_image_size('related-post-thumb', 300, 200, true);
 
     // Register navigation menus
@@ -64,9 +65,11 @@ add_action('after_setup_theme', 'cornerstone_setup');
 
 // Enqueue styles and scripts
 function cornerstone_scripts() {
-    wp_enqueue_style('cornerstone-style', get_stylesheet_uri(), array(), '1.0');
+    $theme = wp_get_theme();
+    wp_enqueue_style('cornerstone-style', get_stylesheet_uri(), array(), $theme->get('Version'));
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css', array(), '6.6.0');
     wp_enqueue_script('cornerstone-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true);
-    
+
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
@@ -155,6 +158,94 @@ function cornerstone_get_related_posts($post_id, $number = 3) {
     }
     
     return $related;
+}
+
+// Get social media platform from URL
+function cornerstone_get_social_platform($url) {
+    $url = strtolower($url);
+
+    $platforms = array(
+        'mastodon' => 'Mastodon',
+        'twitter.com' => 'Twitter',
+        'x.com' => 'X',
+        'linkedin' => 'LinkedIn',
+        'facebook' => 'Facebook',
+        'instagram' => 'Instagram',
+        'github' => 'GitHub',
+        'youtube' => 'YouTube',
+        'tiktok' => 'TikTok',
+        'threads' => 'Threads',
+        'bluesky' => 'Bluesky',
+        'pixelfed' => 'Pixelfed',
+        'peertube' => 'PeerTube',
+        'lastfm' => 'Last.fm',
+        'spotify' => 'Spotify',
+        'flickr' => 'Flickr',
+        'unsplash' => 'Unsplash',
+        'reddit' => 'Reddit',
+        'tumblr' => 'Tumblr',
+        'medium' => 'Medium',
+        'dev.to' => 'Dev.to',
+        'ko-fi' => 'Ko-fi',
+        'patreon' => 'Patreon',
+    );
+
+    foreach ($platforms as $domain => $name) {
+        if (strpos($url, $domain) !== false) {
+            return $name;
+        }
+    }
+
+    // Fallback: extract domain from URL
+    $parsed = parse_url($url);
+    if (isset($parsed['host'])) {
+        return str_replace('www.', '', $parsed['host']);
+    }
+
+    return 'Social Profile';
+}
+
+// Get Font Awesome icon class for social platform
+function cornerstone_get_social_icon($url) {
+    $url = strtolower($url);
+
+    $icons = array(
+        'mastodon.social' => 'fab fa-mastodon',
+        'fosstodon.org' => 'fab fa-mastodon',
+        'indieweb.social' => 'fab fa-mastodon',
+        'bsky.app' => 'fab fa-bluesky',
+        'twitter.com' => 'fab fa-twitter',
+        'x.com' => 'fab fa-x-twitter',
+        'linkedin' => 'fab fa-linkedin',
+        'facebook' => 'fab fa-facebook',
+        'instagram' => 'fab fa-instagram',
+        'github' => 'fab fa-github',
+        'youtube' => 'fab fa-youtube',
+        'tiktok' => 'fab fa-tiktok',
+        'threads' => 'fab fa-threads',
+        'pixelfed' => 'fab fa-pixelfed',
+        'peertube' => 'fab fa-peertube',
+        'lastfm' => 'fab fa-lastfm',
+        'spotify' => 'fab fa-spotify',
+        'flickr' => 'fab fa-flickr',
+        'unsplash' => 'fab fa-unsplash',
+        'reddit' => 'fab fa-reddit',
+        'tumblr' => 'fab fa-tumblr',
+        'medium' => 'fab fa-medium',
+        'dev.to' => 'fab fa-dev',
+        'ko-fi' => 'fab fa-kofi',
+	'patreon' => 'fab fa-patreon',
+	'.social' => 'fab fa-mastodon',
+    );
+
+    foreach ($icons as $domain => $icon) {
+        if (strpos($url, $domain) !== false) {
+            return $icon;
+        }
+    }
+
+    // Fallback icon
+    return 'fas fa-link';
 }
 
 // Theme Customizer
