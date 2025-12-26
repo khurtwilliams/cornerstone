@@ -160,7 +160,7 @@
                         <div class="author-description p-note">
                             <?php echo wp_kses_post(get_the_author_meta('description')); ?>
                         </div>
-                        <?php 
+<?php
                         // Social links from customizer
                         $social_links = array();
                         for ($i = 1; $i <= 5; $i++) {
@@ -169,14 +169,22 @@
                                 $social_links[] = $link;
                             }
                         }
-                        
+
                         if (!empty($social_links)) : ?>
                             <div class="author-social">
                                 <?php foreach ($social_links as $link) : ?>
-                                    <a href="<?php echo esc_url($link); ?>" rel="me" target="_blank"><?php echo esc_url($link); ?></a>
+                                    <?php
+                                    $icon = cornerstone_get_social_icon($link);
+                                    $platform = cornerstone_get_social_platform($link);
+                                    ?>
+                                    <a href="<?php echo esc_url($link); ?>" rel="me noopener" target="_blank" title="<?php echo esc_attr($platform); ?>" class="social-icon">
+                                        <i class="<?php echo esc_attr($icon); ?>"></i>
+                                        <span class="social-platform"><?php echo esc_html($platform); ?></span>
+                                    </a>
                                 <?php endforeach; ?>
                             </div>
                         <?php endif; ?>
+
                     </div>
                 </div>
             <?php endif; ?>
