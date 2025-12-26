@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.8] - 2025-12-26
+
+### Added
+- Table styling with visible borders for both standard and dark modes
+- Alternating row colours for improved table readability
+- Hover effects on table rows for better visual feedback
+- Proper padding and spacing for table cells and headers
+
+### Fixed
+- Tables now display visible borders in both light and dark colour schemes
+- Improved table contrast and readability across all colour modes
+
 ## [1.0.7] - 2025-11-21
 
 ## Added
