@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2025-12-27
+
+### Added
+- New `cornerstone_get_activitypub_avatar()` helper function to retrieve Fediverse avatars
+- Support for ActivityPub plugin's cached actor icons in Fediverse Interactions section
+
+### Fixed
+- Fediverse Interactions now display actual Fediverse avatars instead of Gravatar fallbacks
+- Avatars now properly show the user's Fediverse profile picture from Mastodon, Pixelfed, etc.
+
+### Changed
+- Fediverse reactions section now uses direct `<img>` tags with lazy loading for better performance
+- Avatar images include proper `width`, `height`, and `loading="lazy"` attributes
+- Improved fallback chain: ActivityPub actor icon → avatar_url meta → Webmention avatar → WordPress get_avatar_url → Gravatar
+
+### Technical
+- The avatar helper checks multiple comment meta keys: `activitypub_actor_icon`, `avatar_url`, `activitypub_actor`, `semantic_linkbacks_avatar`
+- Uses WordPress `get_avatar_url()` with comment object to allow ActivityPub plugin filters to work
+- Graceful fallback to Gravatar with mystery person default if no Fediverse avatar found
+
 ## [1.0.9] - 2025-12-26
 
 ### Added
