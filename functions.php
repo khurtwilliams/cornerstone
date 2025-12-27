@@ -248,6 +248,81 @@ function cornerstone_get_social_icon($url) {
     return 'fas fa-link';
 }
 
+/**
+ * Get ActivityPub avatar URL for a comment.
+ * 
+ * This function retrieves the Fediverse avatar from the ActivityPub plugin's
+ * stored data. It checks multiple possible meta keys where the avatar URL
+ * might be stored, and falls back to Gravatar if none are found.
+ *
+ * @param int    $comment_id    The comment ID.
+ * @param string $email         The comment author email (for Gravatar fallback).
+ * @param int    $size          The avatar size in pixels.
+ * @return string               The avatar URL.
+ */
+function cornerstone_get_activitypub_avatar($comment_id, $email, $size = 32) {
+    // Try to get the avatar from ActivityPub plugin's comment meta
+    // The ActivityPub plugin may store avatar URLs in different meta keys
+    $avatar_url = '';
+    
+    // Check for ActivityPub actor icon (newer versions of the plugin)
+    $actor_icon = get_comment_meta($comment_id, 'activitypub_actor_icon', true);
+    if (!empty($actor_icon)) {
+        // The icon might be stored as an array with 'url' key or as a direct URL
+        if (is_array($actor_icon) && isset($actor_icon['url'])) {
+            $avatar_url = $actor_icon['url'];
+        } elseif (is_string($actor_icon)) {
+            $avatar_url = $actor_icon;
+        }
+    }
+    
+    // Check for avatar_url meta (alternative storage)
+    if (empty($avatar_url)) {
+        $avatar_url = get_comment_meta($comment_id, 'avatar_url', true);
+    }
+    
+    // Check for protocol meta that might contain avatar info
+    if (empty($avatar_url)) {
+        $protocol = get_comment_meta($comment_id, 'protocol', true);
+        if ($protocol === 'activitypub') {
+            // Try to get avatar from actor data
+            $actor = get_comment_meta($comment_id, 'activitypub_actor', true);
+            if (!empty($actor) && is_array($actor)) {
+                if (isset($actor['icon']['url'])) {
+                    $avatar_url = $actor['icon']['url'];
+                } elseif (isset($actor['icon']) && is_string($actor['icon'])) {
+                    $avatar_url = $actor['icon'];
+                }
+            }
+        }
+    }
+    
+    // Check for webmention source avatar (if using Webmention plugin together)
+    if (empty($avatar_url)) {
+        $avatar_url = get_comment_meta($comment_id, 'semantic_linkbacks_avatar', true);
+    }
+    
+    // If still no avatar found, try using the comment object with get_avatar_url
+    // This allows the ActivityPub plugin's filters to work
+    if (empty($avatar_url)) {
+        $comment = get_comment($comment_id);
+        if ($comment) {
+            // Use get_avatar_url which goes through WordPress filters
+            // The ActivityPub plugin hooks into 'pre_get_avatar_data'
+            $avatar_url = get_avatar_url($comment, array('size' => $size));
+        }
+    }
+    
+    // Final fallback to Gravatar using email
+    if (empty($avatar_url) || strpos($avatar_url, 'gravatar.com/avatar/?') !== false) {
+        // Check if it's a mystery person/blank gravatar, use a better default
+        $hash = md5(strtolower(trim($email)));
+        $avatar_url = 'https://www.gravatar.com/avatar/' . $hash . '?s=' . $size . '&d=mp';
+    }
+    
+    return $avatar_url;
+}
+
 // Theme Customizer
 function cornerstone_customize_register($wp_customize) {
     // Social Links Section
@@ -289,3 +364,4 @@ function cornerstone_customize_register($wp_customize) {
 }
 add_action('customize_register', 'cornerstone_customize_register');
 ?>
+
