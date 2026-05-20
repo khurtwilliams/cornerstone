@@ -28,7 +28,7 @@
 <!-- h-card -->
 <div class="h-card screen-reader-text">
     <?php
-    $author = get_user_by('login', 'khurtwilliams');
+    $author = get_user_by('email', get_option('admin_email'));
     if (!$author) {
         $author = get_user_by('ID', 1);
     }

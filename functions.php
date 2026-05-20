@@ -233,9 +233,8 @@ function cornerstone_get_social_icon($url) {
         'tumblr' => 'fab fa-tumblr',
         'medium' => 'fab fa-medium',
         'dev.to' => 'fab fa-dev',
-        'ko-fi' => 'fab fa-kofi',
-	'patreon' => 'fab fa-patreon',
-	'.social' => 'fab fa-mastodon',
+        'ko-fi'   => 'fab fa-kofi',
+        'patreon' => 'fab fa-patreon',
     );
 
     foreach ($icons as $domain => $icon) {
@@ -322,6 +321,21 @@ function cornerstone_get_activitypub_avatar($comment_id, $email, $size = 32) {
     
     return $avatar_url;
 }
+
+// Clear cached ActivityPub reactions when a like/repost comment changes
+function cornerstone_clear_ap_reactions_cache($comment_id) {
+    $comment = get_comment($comment_id);
+    if ($comment && in_array($comment->comment_type, array('like', 'repost'), true)) {
+        delete_transient('cornerstone_ap_reactions_' . $comment->comment_post_ID);
+    }
+}
+add_action('comment_post', 'cornerstone_clear_ap_reactions_cache');
+add_action('deleted_comment', 'cornerstone_clear_ap_reactions_cache');
+add_action('transition_comment_status', function($new_status, $old_status, $comment) {
+    if (in_array($comment->comment_type, array('like', 'repost'), true)) {
+        delete_transient('cornerstone_ap_reactions_' . $comment->comment_post_ID);
+    }
+}, 10, 3);
 
 // Theme Customizer
 function cornerstone_customize_register($wp_customize) {
