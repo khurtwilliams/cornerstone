@@ -59,7 +59,7 @@ function cornerstone_comment($comment, $args, $depth) {
                 <?php echo get_avatar($comment, 50, '', '', array('class' => 'u-photo')); ?>
                 <div class="comment-metadata">
                     <span class="fn p-name"><?php echo get_comment_author_link(); ?></span>
-                    <a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>" class="u-url">
+                    <a href="<?php echo esc_url(get_comment_link($comment->comment_ID)); ?>" class="u-url">
                         <time class="dt-published" datetime="<?php echo get_comment_date('c'); ?>">
                             <?php printf(__('%1$s at %2$s', 'cornerstone'), get_comment_date(), get_comment_time()); ?>
                         </time>
