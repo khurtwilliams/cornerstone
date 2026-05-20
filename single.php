@@ -84,24 +84,34 @@
             // Display ActivityPub Interactions - only on single post pages
             if (is_single()) {
                 global $wpdb;
-                
-                $reposts = $wpdb->get_results($wpdb->prepare(
-                    "SELECT comment_ID, comment_author, comment_author_url, comment_author_email 
-                     FROM {$wpdb->comments} 
-                     WHERE comment_post_ID = %d 
-                     AND comment_type = 'repost' 
-                     AND comment_approved = '1'",
-                    get_the_ID()
-                ));
-                
-                $likes = $wpdb->get_results($wpdb->prepare(
-                    "SELECT comment_ID, comment_author, comment_author_url, comment_author_email 
-                     FROM {$wpdb->comments} 
-                     WHERE comment_post_ID = %d 
-                     AND comment_type = 'like' 
-                     AND comment_approved = '1'",
-                    get_the_ID()
-                ));
+                $post_id   = get_the_ID();
+                $cache_key = 'cornerstone_ap_reactions_' . $post_id;
+                $reactions = get_transient($cache_key);
+
+                if ($reactions === false) {
+                    $reactions = array(
+                        'reposts' => $wpdb->get_results($wpdb->prepare(
+                            "SELECT comment_ID, comment_author, comment_author_url, comment_author_email
+                             FROM {$wpdb->comments}
+                             WHERE comment_post_ID = %d
+                             AND comment_type = 'repost'
+                             AND comment_approved = '1'",
+                            $post_id
+                        )),
+                        'likes' => $wpdb->get_results($wpdb->prepare(
+                            "SELECT comment_ID, comment_author, comment_author_url, comment_author_email
+                             FROM {$wpdb->comments}
+                             WHERE comment_post_ID = %d
+                             AND comment_type = 'like'
+                             AND comment_approved = '1'",
+                            $post_id
+                        )),
+                    );
+                    set_transient($cache_key, $reactions, HOUR_IN_SECONDS);
+                }
+
+                $reposts = $reactions['reposts'];
+                $likes   = $reactions['likes'];
                 
                 if (!empty($reposts) || !empty($likes)) : ?>
                     <div class="activitypub-reactions">
