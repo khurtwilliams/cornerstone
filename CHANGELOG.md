@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2026-05-20
+
+### Fixed
+- Release zip no longer includes absolute paths from the build machine (fixes broken installation reported in #5)
+- Automated release packaging via GitHub Actions to prevent recurrence
+
+### Changed
+- `comments.php`: replaced `htmlspecialchars()` with `esc_url()` for comment permalink output
+- `functions.php`: fixed mixed tab/space indentation; removed imprecise `.social` Mastodon catch-all
+- `functions.php`: ActivityPub reactions now cached with transients to avoid per-request database queries
+- `header.php`: h-card author lookup now uses WordPress admin email instead of hardcoded username
+
 ## [1.1.0] - 2025-12-27
 
 ### Added
