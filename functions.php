@@ -233,9 +233,8 @@ function cornerstone_get_social_icon($url) {
         'tumblr' => 'fab fa-tumblr',
         'medium' => 'fab fa-medium',
         'dev.to' => 'fab fa-dev',
-        'ko-fi' => 'fab fa-kofi',
-	'patreon' => 'fab fa-patreon',
-	'.social' => 'fab fa-mastodon',
+        'ko-fi'   => 'fab fa-kofi',
+        'patreon' => 'fab fa-patreon',
     );
 
     foreach ($icons as $domain => $icon) {
