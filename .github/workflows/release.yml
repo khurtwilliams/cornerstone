@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build zip
+        run: |
+          mkdir -p /tmp/build/cornerstone
+          rsync -r \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='SECURITY.md' \
+            . /tmp/build/cornerstone/
+          cd /tmp/build
+          zip -r cornerstone.zip cornerstone/
+
+      - name: Attach zip to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: /tmp/build/cornerstone.zip
