@@ -60,7 +60,7 @@ function cornerstone_comment($comment, $args, $depth) {
                 <div class="comment-metadata">
                     <span class="fn p-name"><?php echo get_comment_author_link(); ?></span>
                     <a href="<?php echo esc_url(get_comment_link($comment->comment_ID)); ?>" class="u-url">
-                        <time class="dt-published" datetime="<?php echo get_comment_date('c'); ?>">
+                        <time class="dt-published" datetime="<?php echo esc_attr(get_comment_date('c')); ?>">
                             <?php printf(__('%1$s at %2$s', 'cornerstone'), get_comment_date(), get_comment_time()); ?>
                         </time>
                     </a>

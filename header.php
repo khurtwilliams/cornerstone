@@ -78,9 +78,9 @@
             </a>
         </h1>
         
-        <?php $description = get_bloginfo('description', 'display'); ?>
+        <?php $description = get_bloginfo('description', 'raw'); ?>
         <?php if ($description || is_customize_preview()) : ?>
-            <p class="site-description"><?php echo $description; ?></p>
+            <p class="site-description"><?php echo esc_html($description); ?></p>
         <?php endif; ?>
     </div>
 </div>
