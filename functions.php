@@ -68,6 +68,8 @@ function cornerstone_scripts() {
     $theme = wp_get_theme();
     wp_enqueue_style('cornerstone-style', get_stylesheet_uri(), array(), $theme->get('Version'));
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css', array(), '6.6.0');
+    wp_style_add_data('font-awesome', 'integrity', 'sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==');
+    wp_style_add_data('font-awesome', 'crossorigin', 'anonymous');
     wp_enqueue_script('cornerstone-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
