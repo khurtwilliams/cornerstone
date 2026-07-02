@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2026-07-02
+
+### Reverted
+- Removed `activitypub_object_content_template` filter introduced in 1.1.2; it did not fix Social Note duplication and caused all federation to be delayed; correct approach for ActivityPub v9.x is still under investigation
+
 ## [1.1.2] - 2026-07-02
 
 ### Fixed
