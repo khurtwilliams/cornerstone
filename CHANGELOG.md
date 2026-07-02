@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.4] - 2026-07-02
+
+### Fixed
+- Hardened output escaping across theme templates: site tagline (`header.php`), related post/post navigation links and titles, category/tag links and names (`single.php`), and comment date attribute (`comments.php`)
+- Added Subresource Integrity (SRI) hash to the Font Awesome CDN stylesheet to protect against a compromised or tampered CDN response
+
 ## [1.1.3] - 2026-07-02
 
 ### Reverted
