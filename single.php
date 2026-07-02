@@ -62,7 +62,7 @@
                         echo '<div class="post-categories">';
                         echo '<span>' . __('Categories:', 'cornerstone') . ' </span>';
                         foreach ($categories as $category) {
-                            echo '<a href="' . get_category_link($category->term_id) . '" class="p-category" rel="category tag">' . $category->name . '</a> ';
+                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '" class="p-category" rel="category tag">' . esc_html($category->name) . '</a> ';
                         }
                         echo '</div>';
                     }
@@ -72,7 +72,7 @@
                         echo '<div class="post-tags">';
                         echo '<span>' . __('Tags:', 'cornerstone') . ' </span>';
                         foreach ($tags as $tag) {
-                            echo '<a href="' . get_tag_link($tag->term_id) . '" class="p-category" rel="tag">' . $tag->name . '</a> ';
+                            echo '<a href="' . esc_url(get_tag_link($tag->term_id)) . '" class="p-category" rel="tag">' . esc_html($tag->name) . '</a> ';
                         }
                         echo '</div>';
                     }
@@ -216,14 +216,14 @@
                             <article class="related-post h-entry">
                                 <?php if (has_post_thumbnail($related->ID)) : ?>
                                     <div class="related-post-thumbnail">
-                                        <a href="<?php echo get_permalink($related->ID); ?>" class="u-url">
+                                        <a href="<?php echo esc_url(get_permalink($related->ID)); ?>" class="u-url">
                                             <?php echo get_the_post_thumbnail($related->ID, 'related-post-thumb', array('class' => 'u-photo')); ?>
                                         </a>
                                     </div>
                                 <?php endif; ?>
                                 <h4 class="related-post-title p-name">
-                                    <a href="<?php echo get_permalink($related->ID); ?>" class="u-url">
-                                        <?php echo get_the_title($related->ID); ?>
+                                    <a href="<?php echo esc_url(get_permalink($related->ID)); ?>" class="u-url">
+                                        <?php echo esc_html(get_the_title($related->ID)); ?>
                                     </a>
                                 </h4>
                                 <div class="related-post-date">
@@ -254,18 +254,18 @@
                     <div class="nav-links">
                         <?php if ($prev_post) : ?>
                             <div class="nav-previous">
-                                <a href="<?php echo get_permalink($prev_post->ID); ?>" rel="prev">
+                                <a href="<?php echo esc_url(get_permalink($prev_post->ID)); ?>" rel="prev">
                                     <span class="nav-subtitle"><?php _e('Previous Post', 'cornerstone'); ?></span>
-                                    <span class="nav-title"><?php echo get_the_title($prev_post->ID); ?></span>
+                                    <span class="nav-title"><?php echo esc_html(get_the_title($prev_post->ID)); ?></span>
                                 </a>
                             </div>
                         <?php endif; ?>
-                        
+
                         <?php if ($next_post) : ?>
                             <div class="nav-next">
-                                <a href="<?php echo get_permalink($next_post->ID); ?>" rel="next">
+                                <a href="<?php echo esc_url(get_permalink($next_post->ID)); ?>" rel="next">
                                     <span class="nav-subtitle"><?php _e('Next Post', 'cornerstone'); ?></span>
-                                    <span class="nav-title"><?php echo get_the_title($next_post->ID); ?></span>
+                                    <span class="nav-title"><?php echo esc_html(get_the_title($next_post->ID)); ?></span>
                                 </a>
                             </div>
                         <?php endif; ?>
