@@ -129,6 +129,15 @@ function cornerstone_webmention_discovery() {
 }
 add_action('wp_head', 'cornerstone_webmention_discovery');
 
+// Strip the title wrapper from ActivityPub payloads so Social Notes don't
+// duplicate their text on Mastodon (the hidden post title was being prepended).
+add_filter('activitypub_object_content_template', function($template, $object, $post) {
+    if ($post && $post->post_type === 'sn') {
+        return '[ap_content]';
+    }
+    return $template;
+}, 10, 3);
+
 // Customize excerpt length
 function cornerstone_excerpt_length($length) {
     return 30;
