@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2026-07-02
+
+### Fixed
+- Jetpack Social Notes no longer duplicate their text on Mastodon; the hidden title string is no longer prepended to the ActivityPub payload
+
+### Changed
+- `activitypub_object_content_template` filter scoped to `sn` post type only — standard posts, pages, and all other content types are unaffected
+
 ## [1.1.1] - 2026-05-20
 
 ### Fixed
