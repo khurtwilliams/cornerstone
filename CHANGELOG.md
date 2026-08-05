@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.5] - 2026-07-02
+
+### Fixed
+- Featured image captions on Pages (e.g. `page.php`) now display on the front end; the caption output logic present in `index.php` and `single.php` was missing from `page.php`
+
 ## [1.1.4] - 2026-07-02
 
 ### Fixed
