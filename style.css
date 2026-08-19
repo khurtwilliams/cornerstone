@@ -380,59 +380,6 @@ article:last-child {
     font-size: 0.9rem;
 }
 
-/* Related Posts */
-.related-posts {
-    margin: 3rem 0;
-    padding: 2rem;
-    background: #f9f9f9;
-    border-radius: 8px;
-}
-
-.related-posts h3 {
-    margin-bottom: 1.5rem;
-    color: #333;
-}
-
-.related-posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.related-post {
-    background: white;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.related-post:hover {
-    transform: translateY(-2px);
-}
-
-.related-post-thumbnail img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-.related-post-title {
-    padding: 1rem 1rem 0.5rem;
-    margin: 0;
-    font-size: 1rem;
-}
-
-.related-post-title a {
-    color: #333;
-}
-
-.related-post-date {
-    padding: 0 1rem 1rem;
-    color: #666;
-    font-size: 0.85rem;
-}
-
 /* Post Navigation */
 .post-navigation {
     margin: 3rem 0;
@@ -785,10 +732,6 @@ article:last-child {
         text-align: center;
     }
     
-    .related-posts-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .nav-links {
         grid-template-columns: 1fr;
     }
@@ -829,10 +772,6 @@ article:last-child {
     
     .site-main {
         padding: 1rem 0;
-    }
-    
-    .related-posts-grid {
-        gap: 1rem;
     }
     
     .footer-widget-areas {
@@ -886,8 +825,7 @@ article:last-child {
     .site-header,
     .site-footer,
     .comment-respond,
-    .post-navigation,
-    .related-posts {
+    .post-navigation {
         display: none;
     }
     
@@ -1032,7 +970,6 @@ article:last-child {
     }
 
     .author-bio,
-    .related-posts,
     .comment-list .comment {
         background: #2a2a2a;
     }
@@ -1080,10 +1017,6 @@ article:last-child {
         color: #e1e1e1;
     }
     
-    .related-posts h3 {
-        color: #e1e1e1;
-    }
-
     .post-thumbnail .wp-caption-text {
         color: #aaa;
     }
@@ -1134,19 +1067,6 @@ article:last-child {
     .social-icon:hover {
         background: #0073aa;
         color: white;
-    }
-
-    /* Related Posts */
-    .related-post {
-        background: #333;
-    }
-
-    .related-post-title a {
-        color: #e1e1e1;
-    }
-
-    .related-post-date {
-        color: #aaa;
     }
 }
 
