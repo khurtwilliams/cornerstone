@@ -50,7 +50,6 @@ function cornerstone_setup() {
     // Add custom image sizes
     /// add_image_size('featured-image', 1200, 600, true);
     add_image_size('featured-image', 1200, 9999, false);
-    add_image_size('related-post-thumb', 300, 200, true);
 
     // Register navigation menus
     register_nav_menus(array(
@@ -142,25 +141,6 @@ function cornerstone_excerpt_more($more) {
     return '&hellip;';
 }
 add_filter('excerpt_more', 'cornerstone_excerpt_more');
-
-// Get related posts
-function cornerstone_get_related_posts($post_id, $number = 3) {
-    $related = get_posts(array(
-        'category__in' => wp_get_post_categories($post_id),
-        'numberposts'  => $number,
-        'post__not_in' => array($post_id)
-    ));
-    
-    if (empty($related)) {
-        $related = get_posts(array(
-            'numberposts'  => $number,
-            'post__not_in' => array($post_id),
-            'orderby'      => 'rand'
-        ));
-    }
-    
-    return $related;
-}
 
 // Get social media platform from URL
 function cornerstone_get_social_platform($url) {

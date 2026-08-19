@@ -206,38 +206,6 @@
             <?php endif; ?>
 
             <?php
-            // Related Posts
-            $related_posts = cornerstone_get_related_posts(get_the_ID());
-            if (!empty($related_posts)) : ?>
-                <div class="related-posts">
-                    <h3><?php _e('Related Posts', 'cornerstone'); ?></h3>
-                    <div class="related-posts-grid">
-                        <?php foreach ($related_posts as $related) : ?>
-                            <article class="related-post h-entry">
-                                <?php if (has_post_thumbnail($related->ID)) : ?>
-                                    <div class="related-post-thumbnail">
-                                        <a href="<?php echo esc_url(get_permalink($related->ID)); ?>" class="u-url">
-                                            <?php echo get_the_post_thumbnail($related->ID, 'related-post-thumb', array('class' => 'u-photo')); ?>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-                                <h4 class="related-post-title p-name">
-                                    <a href="<?php echo esc_url(get_permalink($related->ID)); ?>" class="u-url">
-                                        <?php echo esc_html(get_the_title($related->ID)); ?>
-                                    </a>
-                                </h4>
-                                <div class="related-post-date">
-                                    <time class="dt-published" datetime="<?php echo esc_attr(get_the_date('c', $related->ID)); ?>">
-                                        <?php echo get_the_date('', $related->ID); ?>
-                                    </time>
-                                </div>
-                            </article>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-            <?php
             // Comments
             if (comments_open() || get_comments_number()) {
                 comments_template();
