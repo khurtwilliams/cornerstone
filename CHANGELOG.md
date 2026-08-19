@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.6] - 2026-08-19
+
+### Removed
+- Theme's built-in Related Posts section (`single.php`, `cornerstone_get_related_posts()`) to avoid duplicating WordPress Core's native related posts feature when both are active
+
 ## [1.1.5] - 2026-07-02
 
 ### Fixed
