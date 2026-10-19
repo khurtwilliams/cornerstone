@@ -130,6 +130,14 @@ function cornerstone_webmention_discovery() {
 }
 add_action('wp_head', 'cornerstone_webmention_discovery');
 
+// Let the Webmention plugin send and receive for Jetpack Social Notes
+function cornerstone_social_note_webmention_support() {
+    if (post_type_exists('jetpack-social-note')) {
+        add_post_type_support('jetpack-social-note', 'webmentions');
+    }
+}
+add_action('init', 'cornerstone_social_note_webmention_support', 20);
+
 // Customize excerpt length
 function cornerstone_excerpt_length($length) {
     return 30;
