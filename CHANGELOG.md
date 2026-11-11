@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.7] - 2026-11-11
+
+### Added
+- Blockquote styles: accent rule, muted text and citation styling for `blockquote` and the Quote block (including nested, right-aligned and "Plain" variants), Pullquote block styling, with dark mode and high contrast support
+
 ## [1.1.6] - 2026-08-19
 
 ### Removed
