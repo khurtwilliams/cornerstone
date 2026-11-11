@@ -309,6 +309,12 @@ blockquote.wp-block-quote {
     padding: 0.25rem 0 0.25rem 1.25rem;
     border-left: 4px solid #0073aa;
     color: #555;
+    /* Match the surrounding post text */
+    font-family: inherit;
+    font-size: inherit;
+    font-style: normal;
+    font-weight: inherit;
+    line-height: inherit;
 }
 
 blockquote > :first-child {
@@ -322,6 +328,11 @@ blockquote > :last-child {
 blockquote p {
     margin-top: 0;
     margin-bottom: 1rem;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
 }
 
 blockquote cite,
